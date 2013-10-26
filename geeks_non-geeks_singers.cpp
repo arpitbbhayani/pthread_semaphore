@@ -17,7 +17,7 @@ struct people {
 };
 
 /* Functions */
-void 	random_event(int);
+void 	random_event();
 void * 	geek_arrives( void * );
 void * 	non_geek_arrives( void * );
 void * 	singer_arrives( void * );
@@ -51,10 +51,12 @@ int main ( int argc , char * argv[] ) {
 
 	thread = ( pthread_t * ) new pthread_t[l*2];
 
+	srand( time(0) );
+
 	sem_init(&mutex,0,1);
 
 	while ( 1 ) {
-		random_event(l);
+		random_event();
 		int s = send_bucket();
 
 		sem_wait(&mutex);
@@ -146,7 +148,7 @@ int send_bucket() {
 
 }
 
-void random_event(int l) {
+void random_event() {
 
 	int n = rand() % 3;
 

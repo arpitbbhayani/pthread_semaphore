@@ -55,6 +55,8 @@ void setup_environment() {
 		pthread_create ( &site_threads[i] , NULL , site_thread , NULL );
 	}
 
+	srand( time(0) );
+
 }
 
 void * site_thread ( void * arg ) {
